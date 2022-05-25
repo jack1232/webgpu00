@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <title>WebGPU Step-by-Step 1</title>
+   <meta name="description" content="">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="origin-trial" content="AnIcGX+/OvBE4KYPGS1qvzc7yj/6swfpUZTsWL4wMl12nazkSnCEAn1gbD1uL8fbUQXlf0Q6/tTxh5vtODzMdAQAAABleyJvcmlnaW4iOiJodHRwczovL2phY2sxMjMyLmdpdGh1Yi5pbzo0NDMiLCJmZWF0dXJlIjoiV2ViR1BVIiwiZXhwaXJ5IjoxNjUyODMxOTk5LCJpc1N1YmRvbWFpbiI6dHJ1ZX0=">
+</head>
+
+<body>
+   <style>
+      li:not(:last-child) {
+         margin-bottom: 10px;
+      }
+   </style>
+
+   <p style="color:red;font-size: large;" id="id-gpu-check"></p>
+   <h2>
+      Most examples used in this video series are based on my recently published book <a href="https://drxudotnet.com">"Practical WebGPU Graphics"</a>
+   </h2>
+   <p style="font-size: large;">
+      WebGPU is the next-generation graphics API and future web standard for graphics and compute, aiming to provide modern 3D graphics and 
+      computation capabilities with the GPU acceleration. This book provides all the tools you need to help you create advanced 3D graphics and 
+      GPU computing on the web with this new WebGPU API. It provides about 60 ready-to-run sample programs that allow you to explore 
+      WebGPU graphics techniques.
+   </p>
+   <hr>
+   <h1>Live Demos for WebGPU Step-By-Step Video Series:</h1>
+   
+   <ol style="font-size:large;">
+      <li><a href="https://jack1232.github.io/webgpu01/">Set up Development Environment</a></li>
+      <li><a href="https://jack1232.github.io/webgpu02/">Create First Triangle</a></li>
+      <li><a href="https://jack1232.github.io/webgpu03/">Create Triangle with Different Vertex Colors</a></li>
+      <li><a href="https://jack1232.github.io/webgpu04/">Create a Triangle with GLSL Shaders</a></li>
+      <li><a href="https://jack1232.github.io/webgpu05/">Create Point and Line Primitives</a></li>
+      <li><a href="https://jack1232.github.io/webgpu06/">Create Triangle Primitives</a></li>
+      <li><a href="https://jack1232.github.io/webgpu07/">Create a Colorful Square with GPU Buffer</a></li>
+      <li><a href="https://jack1232.github.io/webgpu08/">Create a Colorful Square with a Single GPU Buffer</a></li>
+      <li><a href="https://jack1232.github.io/webgpu09/">Create a Colorful Square with an Index GPU Buffer</a></li>
+      <li><a href="https://jack1232.github.io/webgpu10/">Create a 3D Cube with Distinct Face Colors</a></li>
+      <li><a href="https://jack1232.github.io/webgpu11/">3D Cube Animation and Camamera Control</a></li>
+      <li><a href="https://jack1232.github.io/webgpu12/">3D Cube with Distinct Vertex Colors</a></li>
+      <li><a href="https://jack1232.github.io/webgpu13/">Create a 3D Sphere Wireframe</a></li>
+      <li><a href="https://jack1232.github.io/webgpu14/">Create a 3D Cylinder Wireframe</a></li>
+      <li><a href="https://jack1232.github.io/webgpu15/">Create a 3D Cone Wireframe</a></li>
+      <li><a href="https://jack1232.github.io/webgpu16/">Create a 3D Torus Wireframe</a></li>
+      <li>Implement Light Model: No demo for this video.</li>
+      <li><a href="https://jack1232.github.io/webgpu18/">Create a 3D Cube with Lighting Effect</a></li>
+      <li><a href="https://jack1232.github.io/webgpu19/">Create a 3D Sphere with Lighting Effect</a></li>
+      <li><a href="https://jack1232.github.io/webgpu20/">Create a 3D Cylinder with Lighting Effect</a></li>
+      <li><a href="https://jack1232.github.io/webgpu21/">Create a 3D Cone with Lighting Effect</a></li>
+      <li><a href="https://jack1232.github.io/webgpu22/">Create a 3D Torus with Lighting Effect</a></li>
+      <li>Implement Colormap Model: No demo for this video.</li>
+      <li>Implement 3D Simple Surfaces: No demo for this video.</li>
+      <li><a href="https://jack1232.github.io/webgpu25/">Create a 3D Sinc Surface</a></li>
+      <li><a href="https://jack1232.github.io/webgpu26/">Create a 3D Peaks Surface</a></li>
+      <li>Implement 3D Parametric Surfaces: No demo for this video.</li>
+      <li><a href="https://jack1232.github.io/webgpu28/">Create a 3D Klein Bottle</a></li>
+      <li><a href="https://jack1232.github.io/webgpu29/">Create a 3D Wellenkugel Surface</a></li>
+      <li><a href="https://jack1232.github.io/webgpu30/">Create a 3D Seashell Surface</a></li>
+      <li><a href="https://jack1232.github.io/webgpu31/">Create a 3D Sievert-Enneper Surface</a></li>
+      <li><a href="https://jack1232.github.io/webgpu32/">Create a 3D Breather Surface</a></li>
+      <li>Texture Mapping: No demo for this video.</li>
+      <li><a href="https://jack1232.github.io/webgpu34/">Create a 3D Textured Cube</a></li>
+      <li><a href="https://jack1232.github.io/webgpu35/">Create a 3D Textured Sphere</a></li>
+      <li><a href="https://jack1232.github.io/webgpu36/">Create a 3D Textured Cylinder</a></li>
+      <li><a href="https://jack1232.github.io/webgpu37/">Create a 3D Textured Sinc Surface</a></li>
+      <li><a href="https://jack1232.github.io/webgpu38/">Create a 3D Textured Peaks Surface</a></li>
+      <li><a href="https://jack1232.github.io/webgpu39/">Create a 3D Textured Klein Bottle</a></li>
+      <li><a href="https://jack1232.github.io/webgpu40/">Create a 3D Textured Wellenkugel Surface</a></li>
+      <li><a href="https://jack1232.github.io/webgpu41/">Create Multiple Texture Mapping</a></li>
+      <li>3D Surface Charts: No demo for this video.</li>
+      <li><a href="https://jack1232.github.io/webgpu43/">Create a 3D Sinc Surface Chart</a></li>
+      <li><a href="https://jack1232.github.io/webgpu44/">Create a 3D Peaks Surface Chart</a></li>
+      <li><a href="https://jack1232.github.io/webgpu45/">Create a 3D Sphere Surface Chart</a></li>
+      <li><a href="https://jack1232.github.io/webgpu46/">Create a 3D Torus Surface Chart</a></li>
+      <li><a href="https://jack1232.github.io/webgpu47/">Create a 3D Klein Bottle Surface Chart</a></li>
+      <li><a href="https://jack1232.github.io/webgpu48/">Create a 3D Wellenkugel Surface Chart</a></li>
+      <li><a href="https://jack1232.github.io/webgpu49/">Create Tow Cubes in a Single Scene</a></li>
+      <li><a href="https://jack1232.github.io/webgpu50/">Create Multiple Cubes in a Single Scene</a></li>
+      <li><a href="https://jack1232.github.io/webgpu51/">Create Multiple Objects in a Single Scene</a></li>
+      <li><a href="https://jack1232.github.io/webgpu52/">Create Multiple Objects using Different Pipelines</a></li>
+      <li>Create 3D Surface Charts using multiple pipelines: No demo for this video.</li>
+      <li><a href="https://jack1232.github.io/webgpu54/">Create Sinc Surface Chart using Multiple Pipelines</a></li>
+      <li><a href="https://jack1232.github.io/webgpu55/">Create Peaks Surface Chart using Multiple Pipelines</a></li>
+      <li><a href="https://jack1232.github.io/webgpu56/">Anti-Aliasing: MSAA</a></li>
+      <li><a href="https://jack1232.github.io/webgpu57/">Domain Coloring for Complex Functions</a></li>
+   </ol>
+
+   <script src="main.bundle.js"></script>
+</body>
+</html>
